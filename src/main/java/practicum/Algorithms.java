@@ -1,5 +1,6 @@
 package practicum;
 
+import java.sql.Array;
 import java.util.*;
 
 public class Algorithms {
@@ -8,7 +9,24 @@ public class Algorithms {
      * Отсортируйте список, НЕ используя методы стандартной библиотеки (напр. Collections.sort).
      */
     public static List<Integer> sort(List<Integer> list) {
-        return null;
+        // Сортировка "пузырьком"
+        List<Integer> sortedList = new ArrayList<>(list);
+        boolean sorted = false;
+        Integer temp;
+        while (!sorted){
+            sorted = true;
+            for (int i = 0; i < sortedList.size() - 1; i++){
+                if (sortedList.get(i) > sortedList.get(i + 1)){
+                    temp = sortedList.get(i);
+                    sortedList.add(i, sortedList.get(i + 1));
+                    sortedList.remove(i + 1);
+                    sortedList.add(i + 1, temp);
+                    sortedList.remove(i + 2);
+                    sorted = false;
+                }
+            }
+        }
+        return List.copyOf(sortedList);
     }
 
     /**
