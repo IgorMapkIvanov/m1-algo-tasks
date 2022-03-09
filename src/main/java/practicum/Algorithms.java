@@ -118,7 +118,14 @@ public class Algorithms {
      *  (списки, массивы, хэш-таблицы, множества и т.п.).
      */
     public static boolean containsEveryElementOnce(int[] array) {
-        return false;
+        for (int i = 0; i < array.length; i++){
+            for (int j = i + 1; j < array.length; j++){
+                if (array[i] == array[j]){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -136,7 +143,27 @@ public class Algorithms {
      * [1 2] и [1 1 2] = false, разный набор элементов
      */
     public static boolean isPermutation(int[] a, int[] b) {
-        return false;
+        if (a.length != b.length) return false;
+        if (a.length == 0 && b.length == 0) return true;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i =0; i < a.length; i++){
+            if (map.containsKey(a[i])){
+                int count = map.get(a[i]) + 1;
+                map.put(a[i], count);
+            } else {
+                map.put(a[i], 1);
+            }
+        }
+        for (Integer key : map.keySet()){
+            int count = 0;
+            for (int i = 0; i < b.length; i++){
+                if (key == b[i]) count++;
+            }
+            if (count == 0 || count != map.get(key)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
