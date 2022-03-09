@@ -78,7 +78,36 @@ public class Algorithms {
      * Доп. условие: у алгоритма должна быть линейная сложность, O(n).
      */
     public static List<Integer> mergeSortedLists(List<Integer> a, List<Integer> b) {
-        return null;
+        if (a.isEmpty() && b.isEmpty()) return Collections.emptyList();
+        if (a.isEmpty()) return b;
+        if (b.isEmpty()) return a;
+
+        List<Integer> ab = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while (i < a.size() && j < b.size()){
+            if (a.get(i) < b.get(j)){
+                ab.add(a.get(i));
+                i++;
+            } else if (b.get(j) < a.get(i)){
+                ab.add(b.get(j));
+                j++;
+            } else {
+                ab.add(a.get(i));
+                i++;
+                ab.add(b.get(j));
+                j++;
+            }
+        }
+        while (i < a.size()){
+            ab.add(a.get(i));
+            i++;
+        }
+        while (j < b.size()){
+            ab.add(b.get(j));
+            j++;
+        }
+        return List.copyOf(ab);
     }
 
     /**
