@@ -38,7 +38,13 @@ public class Algorithms {
      * К списку-результату это не относится.
      */
     public static List<Integer> removeDuplicates(List<Integer> list) {
-        return null;
+        List<Integer> uniqueList = new ArrayList<>();
+        for (Integer number : list){
+            if (!uniqueList.contains(number)){
+                uniqueList.add(number);
+            }
+        }
+        return List.copyOf(uniqueList);
     }
 
     /**
